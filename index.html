@@ -5,93 +5,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      /* Leer mas... */
+
+      .leer-mas-link {
+        color: #3b82f6;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .leer-mas-link::after {
+        content: "Leer más";
+      }
+
+      .peer:checked + .leer-mas-texto + .leer-mas-link::after {
+        content: "Leer menos";
+      }
+
+      .leer-mas-texto {
+        display: none;
+      }
+
+      .peer:checked ~ .leer-mas-texto {
+        display: inline;
+      }
+
+      /* modal */
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: rgb(0, 72, 94);
+        padding: 20px;
+        border-radius: 10px;
+        position: relative;
+        max-width: 600px;
+        width: 90%;
+        border: 1px solid #ccc;
+      }
+
+      .modal-large {
+        width: 95%;
+        max-width: 1200px;
+        height: 90vh;
+      }
+
+      .carousel img {
+        width: 100%;
+        border-radius: 10px;
+        border: 3px solid #ccc;
+      }
+
+      .nav {
+        cursor: pointer;
+        font-size: 2rem;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: black;
+        background: white;
+        border: none;
+      }
+
+      .prev {
+        left: 10px;
+      }
+
+      .next {
+        right: 10px;
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: red;
+      }
+    </style>
   </head>
-  <header
-    class="flex flex-col justify-center items-center mb-8 bg-gradient-to-b from-blue-500 p-4 text-center"
-  >
-    <img
-      src="./perfil.jpg"
-      alt="imagen"
-      class="object-cover mask-radial-at-center mask-radial-from-50% mask-radial-to-80% rounded-full mx-auto"
-    />
-    <div class="-mt-4 z-10">
-      <span
-        class="font-mono text-center border border-sky-400 text-sky-400 rounded-full px-3 justify-center shadow-md bg-[#061c27dc] text-2xl"
-        >@fedev</span
-      >
-    </div>
-  </header>
+
   <body
     class="bg-gradient-to-br from-gray-900 to-black text-white max-w-xl mx-auto text-center"
   >
+    <!-- Header -->
+    <header
+      class="flex flex-col justify-center items-center mb-8 bg-gradient-to-b from-blue-500 p-4 text-center"
+    >
+      <img
+        src="./perfil.jpg"
+        alt="imagen"
+        class="object-cover rounded-full mx-auto"
+      />
+      <div class="-mt-4 z-10">
+        <span
+          class="font-mono border border-sky-400 text-sky-400 rounded-full px-3 shadow-md bg-[#061c27dc] text-2xl"
+          >@fedev</span
+        >
+      </div>
+    </header>
+
+    <!-- Redes Sociales -->
     <section class="flex gap-4 justify-center mt-4 mb-4">
+      <!-- Enlaces a redes sociales con íconos -->
+      <!-- Instagram -->
       <a
         href="https://www.instagram.com/fedev.jpg/"
         class="bg-gradient-to-tr via-rose-600 from-yellow-300 to-purple-500 rounded-full p-2"
       >
-        <svg
-          class="size-8 mx-auto"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
+        <svg class="size-8 mx-auto" fill="currentColor">
           <use xlink:href="./assets/redes_sociales.svg#instagram" />
         </svg>
       </a>
+      <!-- LinkedIn -->
       <a
         href="https://www.linkedin.com/in/federico-martinolich-8462412a0/"
         class="bg-white rounded-full p-2"
       >
-        <svg
-          class="size-8"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
+        <svg class="size-8" fill="currentColor">
           <use xlink:href="./assets/redes_sociales.svg#linkedin" />
         </svg>
       </a>
+      <!-- WhatsApp -->
       <a
         href="https://wa.me/541125276194"
         class="bg-green-600 rounded-full p-2"
       >
-        <svg
-          class="size-8 mx-auto"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
+        <svg class="size-8 mx-auto" fill="currentColor">
           <use xlink:href="./assets/redes_sociales.svg#whatsapp" />
         </svg>
       </a>
+      <!-- GitHub -->
       <a href="https://www.github.com/" class="bg-purple-950 rounded-full p-2">
-        <svg
-          class="size-8 mx-auto"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
+        <svg class="size-8 mx-auto" fill="currentColor">
           <use xlink:href="./assets/redes_sociales.svg#github" />
         </svg>
       </a>
+      <!-- Gmail -->
       <a
         href="https://mail.google.com/mail/?view=cm&fs=1&to=martinolichfederico@gmail.com"
         target="_blank"
-        rel="noopener noreferrer"
-        target="_blank"
         class="bg-white rounded-full p-2"
       >
-        <svg
-          class="size-8 mx-auto"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
+        <svg class="size-8 mx-auto" fill="currentColor">
           <use xlink:href="./assets/redes_sociales.svg#gmail" />
         </svg>
       </a>
     </section>
 
+    <!-- Sobre mí -->
     <div class="border-b-gray-500 border-b-1 mb-4 pb-4">
       <h1 class="text-xl">¡Bienvenido! Soy Federico José Martinolich</h1>
       <p>Desarrollador y Analista de Sistemas</p>
@@ -106,63 +179,40 @@
       </p>
     </section>
 
+    <!-- Habilidades -->
     <h2 class="text-lg mb-2">Habilidades Principales</h2>
     <p class="text-sm mb-1">HTML - CSS - JavaScript - PHP - Laravel</p>
     <section
       class="flex mb-4 border-b border-gray-500 pb-4 gap-4 justify-center"
     >
-      <div href="">
-        <svg
-          class="size-8 mx-auto"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
+      <div>
+        <svg class="size-8 mx-auto" fill="currentColor">
           <use xlink:href="./assets/sprite.svg#html" />
         </svg>
       </div>
-      <div href="">
-        <svg
-          class="size-8 mx-auto"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
+      <div>
+        <svg class="size-8 mx-auto" fill="currentColor">
           <use xlink:href="./assets/sprite.svg#css" />
         </svg>
       </div>
-      <div href="">
-        <svg
-          class="size-8 mx-auto"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
+      <div>
+        <svg class="size-8 mx-auto" fill="currentColor">
           <use xlink:href="./assets/sprite.svg#javascript" />
         </svg>
       </div>
-      <div href="">
-        <svg
-          class="size-8 mx-auto scale-115"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24"
-          fill="currentColor"
-        >
+      <div>
+        <svg class="size-8 mx-auto scale-115" fill="currentColor">
           <use xlink:href="./assets/sprite.svg#php" />
         </svg>
       </div>
-      <div href="">
-        <svg
-          class="size-8 mx-auto"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
+      <div>
+        <svg class="size-8 mx-auto" fill="currentColor">
           <use xlink:href="./assets/sprite.svg#laravel" />
         </svg>
       </div>
     </section>
 
+    <!-- Educación -->
     <section class="mb-4 border-b-gray-500 border-b-1 pb-4">
       <h2 class="text-lg mb-2">Educación</h2>
       <p class="text-sm">
@@ -171,51 +221,275 @@
       </p>
     </section>
 
+    <!-- Proyectos -->
     <h2 class="mb-4 text-lg">Proyectos</h2>
     <main
       class="mb-4 border-b-gray-500 border-b-1 pb-4 text-lg grid grid-cols-2 grid-rows-1 gap-2 w-full"
     >
+      <!-- Tiro Libre -->
+
+      <div
+        id="myModal"
+        class="modal fixed inset-0 z-50 bg-black bg-opacity-80 hidden items-center justify-center"
+      >
+        <div
+          class="grid grid-cols-2 modal-large bg-gray-900 rounded-lg relative"
+        >
+          <span
+            class="close absolute top-2 right-4 text-white text-3xl cursor-pointer"
+            onclick="closeModal()"
+            >&times;</span
+          >
+
+          <div
+            class="col-span-1 p-4 flex items-center justify-center h-full bg-black rounded-l-lg relative"
+          >
+            <div
+              class="carousel w-full h-full flex items-center justify-center relative"
+            >
+              <img
+                id="carousel-image-myModal"
+                src=""
+                alt="Proyecto"
+                class="object-contain w-full h-full rounded"
+              />
+              <button
+                class="prev absolute left-2 text-gray-500 text-3xl"
+                onclick="changeImage('myModal', -1)"
+              >
+                &#10094;
+              </button>
+              <button
+                class="next absolute right-2 text-gray-500 text-3xl"
+                onclick="changeImage('myModal', 1)"
+              >
+                &#10095;
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="col-span-1 bg-slate-800 p-4 rounded-r-lg h-full overflow-y-auto"
+          >
+            <h2 class="text-lg mb-2 border-b-2 text-white">Tiro Libre</h2>
+            <h2 class="text-lg text-left text-white mt-4">Objetivo</h2>
+            <p class="text-sm text-left m-2 text-gray-300">
+              Tiro Libre es una plataforma para alquilar canchas. Aquí, los
+              propietarios publican sus canchas y los jugadores pueden buscar
+              las mejores opciones para disfrutar con amigos, cuidar el
+              bolsillo, salvar las distancias e incluso crear salas para
+              encontrar nuevos jugadores y formar un equipo ganador. El programa
+              diferencia 2 roles principales:
+            </p>
+            <ul>
+              <li class="text-sm text-left m-2 text-gray-300">
+                <strong>Jugador:</strong> Puede alquilar, buscar canchas y armar
+                salas para buscar jugadores.
+              </li>
+              <li class="text-sm text-left m-2 text-gray-300">
+                <strong>Canchero:</strong> Puede publicar y promocionar su
+                cancha, proporcionando información como ubicación, precio y
+                número de teléfono.
+              </li>
+            </ul>
+            <h2 class="text-lg text-left text-white mt-4">
+              Tecnologías Utilizadas
+            </h2>
+            <ul class="text-xs text-left m-2 text-gray-300 list-disc pl-5">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>PHP</li>
+              <li>MySQL</li>
+              <li>Bootstrap</li>
+              <li>Laravel</li>
+              <li>Tailwind CSS</li>
+            </ul>
+
+            <h2 class="text-lg text-left text-white mt-4">
+              Funciones para Cancheros (Dueños de Canchas)
+            </h2>
+            <p class="text-sm text-left m-2 text-gray-300">
+              <ul class="text-left m-2 text-gray-300 list-disc pl-5 text-xs">
+                <li>Creación, edición y eliminación de canchas en la plataforma</li>
+                <li>Visualizar los turnos de manera practica desde una agenda y
+              calendario</li>
+                <li>Recibir notificaciones de los jugadores cuando se
+              solicita un turno a través de WhatsApp</li>
+                <li>Llevar un registro de los
+              turnos y poder aceptar o rechazar turnos desde la plataforma
+              (además se evita que los clientes consulten por turnos que no
+              están disponibles lo que agiliza más el negocio)</li>
+                <li>Llevar un registro de los
+              turnos y poder aceptar o rechazar turnos desde la plataforma
+              (además se evita que los clientes consulten por turnos que no
+              están disponibles lo que agiliza más el negocio)</li>
+                <li>Las canchas
+              pueden recibir valoraciones lo cual deja en evidencia la calidad
+              de estas en el apartado “canchas recomendadas” donde se muestran
+              las 5 mejores canchas</li>
+              </ul>
+            </p>
+
+            <h2 class="text-lg text-left text-white mt-4">
+              Funciones para Jugadores
+            </h2>
+            <ul class="text-xs text-left m-2 text-gray-300 list-disc pl-5">
+              <li>
+                Búsqueda de canchas por diferentes criterios
+              </li>
+              <li>
+                Reserva de turnos a través de la plataforma. (se envía una
+                solicitud y esta puede ser aceptada o rechazada lo cual se
+                notificará en WhatsApp)
+              </li>
+              <li>
+                Poder dar una calificación de la cancha
+              </li>
+              <li>
+                Visualización de las canchas
+              </li>
+              <li>
+                Posibilidad de encontrar compañeros de equipo si no se tiene un
+                equipo completo
+              </li>
+              <li>
+                El apartado “Mapa” muestra todos los predios disponibles en el
+                mapa de la ciudad de Gualeguaychú
+              </li>
+              <li>
+                En el apartado “Mis turnos” podrá ver las reservas realizadas por
+                él y las salas a las cual se unió o creó para conseguir jugadores
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <a
-        href="./tirolibre.html"
+        onclick="openModal(['./img/tiroLibre/1.png', './img/tiroLibre/2.png', './img/tiroLibre/3.png', './img/tiroLibre/4.png', './img/tiroLibre/5.png', './img/tiroLibre/6.png', './img/tiroLibre/7.png'])"
         class="group relative col-span-1 row-span-2 bg-gradient-to-br to-green-700 from-green-600 rounded-lg p-2 transition-shadow duration-300 overflow-hidden"
       >
         <svg
           class="absolute left-5 size-25 rotate-10 opacity-40 transition-transform duration-500 group-hover:rotate-25 group-hover:scale-110 group-hover:opacity-50"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
           fill="currentColor"
         >
           <use xlink:href="./assets/sprite.svg#laravel" />
         </svg>
-
         <span
           class="absolute bottom-3 right-5 font-bold group-hover:scale-104 transition-transform duration-300 text-2xl"
           >Tiro Libre</span
         >
       </a>
 
+      <!-- checKing -->
+
       <a
-        href="./checking.html"
+        onclick="openModal('myModalChecKing', ['./img/checKing/1.png', './img/checKing/2.png', './img/checKing/3.png', './img/checKing/4.png'])"
         class="group relative col-span-1 row-span-1 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg p-2 transition-shadow duration-300 overflow-hidden"
       >
+
         <svg
           class="absolute scale-160 bottom-1 left-2 size-8 rotate-5 opacity-60 transition-transform duration-500 group-hover:rotate-15 group-hover:scale-185 group-hover:opacity-70"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24"
           fill="currentColor"
         >
           <use xlink:href="./assets/sprite.svg#php" />
         </svg>
-
         <span
-          class="block font-bold group-hover:scale-105 transition-transform duration-300 text-xl"
+          class="text-right mr-4 block font-bold group-hover:scale-105 transition-transform duration-300 text-2xl"
+          >ChecKing</span
         >
-          ChecKing
-        </span>
       </a>
 
+      <!-- Modal checKing -->
+
+        <div
+          id="myModalChecKing"
+          class="modal fixed inset-0 z-50 bg-black bg-opacity-80 hidden items-center justify-center"
+        >
+
+        <div
+          class="grid grid-cols-2 modal-large bg-gray-900 rounded-lg relative"
+        >
+          <span
+            class="close absolute top-2 right-4 text-white text-3xl cursor-pointer"
+            onclick="closeModal('myModalChecKing')"
+          >&times;</span>
+
+
+          <div
+            class="col-span-1 p-4 flex items-center justify-center h-full bg-black rounded-l-lg relative"
+          >
+            <div
+              class="carousel w-full h-full flex items-center justify-center relative"
+            >
+              <img
+                id="carousel-image-myModalChecKing"
+                src=""
+                alt="Proyecto"
+                class="object-contain w-full h-full rounded"
+              />
+
+              <button
+                class="prev absolute left-2 text-gray-500 text-3xl"
+                onclick="changeImage('myModal', -1)"
+              >
+                &#10094;
+              </button>
+              <button
+                class="next absolute right-2 text-gray-500 text-3xl"
+                onclick="changeImage('myModal', 1)"
+              >
+                &#10095;
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="col-span-1 bg-slate-800 p-4 rounded-r-lg h-full overflow-y-auto"
+          >
+            <h2 class="text-lg mb-2 border-b-2 text-white">ChecKing</h2>
+            <h2 class="text-lg text-left text-white mt-4">Objetivo</h2>
+            <p class="text-xs text-left m-2 text-gray-300">
+              Checking es un proyecto desarrollado como parte de la materia de
+              "Programación II" en la facultad Sedes Sapientiae. Este sistema
+              tiene como objetivo principal registrar las asistencias de los
+              alumnos de manera eficiente y sencilla.
+            </p>
+            <h2 class="text-lg text-left text-white mt-4">
+              Tecnologías Utilizadas
+            </h2>
+            <ul class="text-xs text-left m-2 text-gray-300 list-disc pl-5">
+              <li>PHP</li>
+              <li>MySQL</li>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+            <h2 class="text-lg text-left text-white mt-4">Descripción</h2>
+            <p class="text-sm text-left m-2 text-gray-300">
+              El sistema permite a los alumnos registrarse, iniciar sesión y
+              registrar su asistencia de manera sencilla. Los profesores pueden
+              gestionar las asistencias de sus alumnos y generar informes de
+              asistencia.
+            </p>
+            <h2 class="text-lg text-left text-white mt-4">Repositorio</h2>
+            <p class="text-sm text-left m-2 text-gray-300">
+              Puedes encontrar el código fuente del proyecto en mi
+              <a
+                href="https://github.com/FedericoMartinolich/checKing/tree/main/TP%20Asistencias"
+                class="text-blue-400 hover:underline"
+                >GitHub</a
+              >. El proyecto está organizado en carpetas y contiene un archivo
+              README.md con instrucciones para su instalación y uso.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón que abre el segundo modal -->
       <a
-        href="./foodservice.html"
+        onclick="openModal('myModalFoodService', ['./img/foodService/1.jpg', './img/foodService/2.jpg', './img/foodService/3.jpg', './img/foodService/4.jpg', './img/foodService/5.jpg', './img/foodService/6.jpg', './img/foodService/7.jpg', './img/foodService/8.jpg'])"
         class="group relative col-span-1 row-span-1 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg p-2 transition-shadow duration-300 overflow-hidden"
       >
         <svg
@@ -227,27 +501,127 @@
           <use xlink:href="./assets/sprite.svg#javascript" />
         </svg>
         <span
-          class="block font-bold group-hover:scale-105 transition-transform duration-300 text-xl"
+          class="text-right mr-4 block font-bold group-hover:scale-105 transition-transform duration-300 text-2xl"
           >FoodService</span
         >
       </a>
+
+      <!-- Modal FoodService -->
+      <div
+        id="myModalFoodService"
+        class="modal fixed inset-0 z-50 bg-black bg-opacity-80 hidden items-center justify-center"
+      >
+        <div
+          class="grid grid-cols-2 modal-large bg-gray-900 rounded-lg relative"
+        >
+          <span
+            class="close absolute top-2 right-4 text-white text-3xl cursor-pointer"
+            onclick="closeModal('myModalFoodService')"
+            >&times;</span
+          >
+
+          <div
+            class="col-span-1 p-4 flex items-center justify-center h-full bg-black rounded-l-lg relative"
+          >
+            <div
+              class="carousel w-full h-full flex items-center justify-center relative"
+            >
+              <img
+                id="carousel-image-myModalFoodService"
+                class="object-contain w-full h-full rounded"
+              />
+              <button
+                class="prev absolute left-2 text-gray-500 text-3xl"
+                onclick="changeImage('myModalFoodService', -1)"
+              >
+                &#10094;
+              </button>
+              <button
+                class="next absolute right-2 text-gray-500 text-3xl"
+                onclick="changeImage('myModalFoodService', 1)"
+              >
+                &#10095;
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="col-span-1 bg-slate-800 p-4 rounded-r-lg h-full overflow-y-auto"
+          >
+            <h2 class="text-lg mb-2 border-b-2 text-white">FoodService</h2>
+            <h2 class="text-lg text-left text-white mt-4">Descripción</h2>
+            <p class="text-sm text-left m-2 text-gray-300">
+              El sistema fue diseñado para una empresa destinada a servicios de
+              consultoría y desarrollo de software. Permite a los usuarios
+              registrarse, iniciar sesión y realizar pedidos de viandas de
+              manera sencilla. Además, cuenta con una funcionalidad de carga de
+              menús mediante OCR, lo que facilita la gestión de los mismos. Los
+              administradores pueden gestionar los pedidos y los menús de forma
+              eficiente.
+            </p>
+            <h2 class="text-lg text-left text-white mt-4">
+              Tecnologías Utilizadas
+            </h2>
+            <ul class="text-xs text-left m-2 text-gray-300 list-disc pl-5">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>PHP</li>
+              <li>MySQL</li>
+              <li>AJAX</li>
+              <li>Bootstrap</li>
+              <li>Tesseract OCR</li>
+            </ul>
+
+            <h2 class="text-lg text-left text-white mt-4">Dificultades</h2>
+
+            <p class="text-sm text-left m-2 text-gray-300">
+              Durante el desarrollo del proyecto, la principal dificultad fue
+              trabajar con una herramienta proporcionada por la empresa, una
+              especie de framework propio que limitaba considerablemente la
+              flexibilidad del código. Este framework no permitía la instalación
+              de paquetes externos ni contaba con una versión base limpia, ya
+              que se partía de proyectos anteriores. Además,
+              <input
+                type="checkbox"
+                id="leer-mas-toggle-food"
+                class="hidden peer"
+              />
+              <span class="leer-mas-texto hidden peer-checked:inline">
+                la documentación era inexistente y los comentarios en el código
+                no aportaban claridad, lo que hizo más compleja la comprensión
+                de su estructura y funcionamiento. Estas restricciones
+                representaron un desafío particular al momento de implementar
+                ciertas funcionalidades avanzadas. Una de ellas fue la carga de
+                menús mediante reconocimiento óptico de caracteres (OCR). Debido
+                a las limitaciones del entorno, no fue posible utilizar
+                herramientas modernas como npm, por lo que debí integrar
+                Tesseract OCR de forma manual. Esto implicó realizar una
+                configuración cuidadosa y llevar a cabo múltiples pruebas para
+                asegurar su correcto funcionamiento dentro del sistema. A pesar
+                de todas estas dificultades, logré superar los obstáculos y
+                desarrollar un sistema funcional y eficiente, cumpliendo con los
+                requisitos planteados por el proyecto.
+              </span>
+              <label
+                for="leer-mas-toggle-food"
+                class="leer-mas-link ml-1"
+              ></label>
+            </p>
+          </div>
+        </div>
+      </div>
     </main>
+
+    <!-- Contacto -->
     <section class="mb-8 text-left border-b-gray-500 border-b-1 pb-4">
       <form
-        action="https://formsubmit.co/martinolichfederico@gmail.com"
+        id="contact-form"
         method="POST"
         class="grid gap-4 p-4 bg-gray-800 rounded-lg grid-cols-2"
       >
         <h2 class="text-lg mb-2 text-center p-2 col-span-2">Contacto</h2>
-
         <input type="hidden" name="_captcha" value="false" />
-
-        <input
-          type="hidden"
-          name="_next"
-          value="https://tusitio.com/gracias.html"
-        />
-
         <input
           type="text"
           name="name"
@@ -274,16 +648,89 @@
         >
           Enviar
         </button>
+        <p id="form-msg" class="col-span-2 text-center text-sm"></p>
       </form>
     </section>
+
+    <!-- Footer -->
+    <footer class="mt-8">
+      <div class="text-center p-4 bg-gradient-to-t from-blue-700 font-sans">
+        <br />
+        <p class="text-sm">¡Gracias por visitar mi portafolio!</p>
+        <p class="text-xs">
+          Utilizando Tailwind CSS para el estilo - Desarrollado por FeDev - 2025
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contact-form");
+        const formMsg = document.getElementById("form-msg");
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          formMsg.textContent = "Enviando...";
+
+          const formData = new FormData(form);
+          fetch("https://formspree.io/f/xjvowzqg", {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" },
+          })
+            .then((response) => {
+              if (response.ok) {
+                form.reset();
+                formMsg.textContent = "¡Mensaje enviado con éxito!";
+              } else {
+                throw new Error("Error al enviar el mensaje");
+              }
+            })
+            .catch((error) => {
+              formMsg.textContent =
+                "Error al enviar el mensaje. Inténtalo de nuevo.";
+              console.error(error);
+            });
+        });
+
+        // Modal functionality
+
+        const modalData = {};
+
+        window.openModal = function (modalIdOrImages, maybeImages) {
+          // Si solo se pasa una lista de imágenes (modo antiguo), usar modal principal
+          if (Array.isArray(modalIdOrImages)) {
+            modalData["myModal"] = { images: modalIdOrImages, index: 0 };
+            document.getElementById("myModal").style.display = "flex";
+            document.getElementById("carousel-image-myModal").src =
+              modalIdOrImages[0];
+            return;
+          }
+
+          const modalId = modalIdOrImages;
+          const images = maybeImages;
+          modalData[modalId] = { images, index: 0 };
+
+          document.getElementById(modalId).style.display = "flex";
+          document.getElementById("carousel-image-" + modalId).src = images[0];
+        };
+
+        window.closeModal = function (modalId) {
+          if (!modalId) modalId = "myModal";
+          document.getElementById(modalId).style.display = "none";
+        };
+
+        window.changeImage = function (modalId, n) {
+          const data = modalData[modalId];
+          if (!data) return;
+
+          data.index =
+            (data.index + n + data.images.length) % data.images.length;
+          document.getElementById("carousel-image-" + modalId).src =
+            data.images[data.index];
+        };
+      });
+    </script>
   </body>
-  <footer class="mt-8">
-    <div class="text-center p-4 bg-gradient-to-t from-blue-700 font-sans">
-      <br />
-      <p class="text-sm">¡Gracias por visitar mi portafolio!</p>
-      <p class="text-xs">
-        Utilizando Tailwind CSS para el estilo - Desarrollado por FeDev - 2025
-      </p>
-    </div>
-  </footer>
 </html>
